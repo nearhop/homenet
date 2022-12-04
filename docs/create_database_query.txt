@@ -1,0 +1,11 @@
+CREATE DATABASE nearhop;
+use nearhop;
+CREATE TABLE certs (
+    networkid varchar(255) NOT NULL,
+    cacrt varchar(1024) NOT NULL,
+    certkey varchar(1024) NOT NULL,
+    certcrt varchar(1024) NOT NULL,
+    PRIMARY KEY (networkid)
+);
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'venK#at123';
+CREATE USER '\'root\'\@\'localhost\'' IDENTIFIED BY 'venK#at123';

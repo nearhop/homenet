@@ -1,0 +1,30 @@
+syntax = "proto3";
+package cert;
+
+option go_package = "github.com/slackhq/nebula/cert";
+
+//import "google/protobuf/timestamp.proto";
+
+message RawNebulaCertificate {
+    RawNebulaCertificateDetails Details = 1;
+    bytes Signature = 2;
+}
+
+message RawNebulaCertificateDetails {
+    string Name = 1;
+    uint64 NetworkID = 2;
+
+    // Ips and Subnets are in big endian 32 bit pairs, 1st the ip, 2nd the mask
+    repeated uint32 Ips = 3;
+    repeated uint32 Subnets = 4;
+
+    repeated string Groups = 5;
+    int64 NotBefore = 6;
+    int64 NotAfter = 7;
+    bytes PublicKey = 8;
+
+    bool IsCA = 9;
+
+    // sha-256 of the issuer certificate, if this field is blank the cert is self-signed
+    bytes Issuer = 10;
+}
